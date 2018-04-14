@@ -9,7 +9,6 @@ import InjectAppBar from '../app_bar/AppBar';
 import InjectNavDrawer from './NavDrawer';
 import InjectSidebar from './Sidebar';
 import isBrowser from '../utils/is-browser';
-import breakpoints from '../utils/breakpoints';
 import { LAYOUT } from '../identifiers';
 
 const factory = (AppBar, NavDrawer, Sidebar) => {
@@ -53,14 +52,7 @@ const factory = (AppBar, NavDrawer, Sidebar) => {
       this.setState({ width: getViewport().width });
     }
 
-    isPinned = (sideNav) => {
-      if (sideNav) {
-        const { permanentAt, pinned } = sideNav.props;
-        const { width } = this.state;
-        return width > breakpoints[permanentAt] || pinned;
-      }
-      return undefined;
-    }
+    isPinned = () => false
 
     render() {
       const { children, className, theme, ...rest } = this.props;
